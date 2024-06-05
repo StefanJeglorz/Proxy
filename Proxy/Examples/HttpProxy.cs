@@ -16,6 +16,11 @@ namespace Proxy.Examples
             return await client.GetFromJsonAsync<IEnumerable<TEntity>>(BuildRequestUri(nameof(GetListAsync)));
         }
 
+        public IAsyncEnumerable<TEntity?> GetListAsAsyncEnumerableAsync()
+        {
+            return client.GetFromJsonAsAsyncEnumerable<TEntity>(BuildRequestUri(nameof(GetListAsAsyncEnumerableAsync)));
+        }
+
         public async Task<TEntity?> PutAsync(TEntity entity)
         {
             var httpResponseMessage = await client.PutAsJsonAsync(BuildRequestUri(nameof(PutAsync)), entity);
@@ -38,6 +43,7 @@ namespace Proxy.Examples
     {
         public Task<TEntity?> GetAsync();
         public Task<IEnumerable<TEntity>?> GetListAsync();
+        public IAsyncEnumerable<TEntity?> GetListAsAsyncEnumerableAsync();
         public Task<TEntity?> PutAsync(TEntity entity);
         public Task<TEntity?> PostAsync(TEntity entity);
     }
